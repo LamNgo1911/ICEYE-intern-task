@@ -2,6 +2,17 @@
 
 A simple tool for submitting and viewing on-call handover notes. Replaces the Slack thread workflow where information gets lost.
 
+## 🎥 Video demmo
+
+- https://github.com/user-attachments/assets/89bec24e-a242-4b05-b4a3-a930751bc895
+
+## 🤖 AI "Vibe Coding" Log
+
+*I used Claude Code CLI to rapidly prototype this application.*
+
+* **What Worked:** Claude seamlessly generated the Next.js App Router boilerplate, integrated shadcn/ui components and lucide-react icons, and set up SQLite via better-sqlite3 perfectly.
+* **Time Spent:** ~60 minutes total (10m setup, 30m AI generation, 20m debugging/styling/documenting).
+
 ## Features
 
 - Submit handover notes with on-call person, shift date, summary, and notes for the next person
