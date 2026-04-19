@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getHandoverById } from "@/lib/db";
 
 interface PageProps {
@@ -32,41 +31,53 @@ export default async function HandoverDetailPage({ params }: PageProps) {
   });
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container max-w-3xl mx-auto py-8 px-4">
-        <div className="mb-8">
-          <Link href="/">
-            <Button variant="ghost" className="mb-4">
-              &larr; Back to Handovers
-            </Button>
-          </Link>
-        </div>
+    <div className="container max-w-4xl mx-auto py-10 px-4">
+      <div className="mb-8">
+        <Link href="/">
+          <Button variant="ghost" size="sm" className="font-mono text-muted-foreground hover:text-foreground -ml-2">
+            &larr; Back
+          </Button>
+        </Link>
+      </div>
 
-        <Card>
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-2xl">{handover.onCallPerson}</CardTitle>
-              <span className="text-muted-foreground">{formattedDate}</span>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Submitted: {createdAt}
+      {/* Header */}
+      <div className="mb-8">
+        <p className="text-xs font-mono text-primary tracking-widest uppercase mb-1">
+          Handover Report
+        </p>
+        <h1 className="text-3xl font-bold tracking-tight">{handover.onCallPerson}</h1>
+        <div className="flex items-center gap-4 mt-2">
+          <span className="text-sm font-mono text-muted-foreground">{formattedDate}</span>
+          <span className="text-muted-foreground/40">·</span>
+          <span className="text-xs text-muted-foreground/60">Logged {createdAt}</span>
+        </div>
+      </div>
+
+      <div className="h-px bg-gradient-to-r from-primary/40 via-border to-transparent mb-8" />
+
+      {/* Content sections */}
+      <div className="space-y-8">
+        <section>
+          <p className="text-xs font-mono text-primary tracking-widest uppercase mb-3">
+            Shift Summary
+          </p>
+          <div className="bg-card/80 border border-border/60 rounded-lg p-5 glow-border">
+            <p className="text-foreground/90 whitespace-pre-wrap leading-relaxed text-sm">
+              {handover.summary}
             </p>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div>
-              <h3 className="font-semibold mb-2">Summary</h3>
-              <p className="text-muted-foreground whitespace-pre-wrap">
-                {handover.summary}
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-2">Notes for Next Person</h3>
-              <p className="text-muted-foreground whitespace-pre-wrap">
-                {handover.notesForNext}
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+          </div>
+        </section>
+
+        <section>
+          <p className="text-xs font-mono text-primary tracking-widest uppercase mb-3">
+            Notes for Next Person
+          </p>
+          <div className="bg-card/80 border border-border/60 rounded-lg p-5 glow-border">
+            <p className="text-foreground/90 whitespace-pre-wrap leading-relaxed text-sm">
+              {handover.notesForNext}
+            </p>
+          </div>
+        </section>
       </div>
     </div>
   );

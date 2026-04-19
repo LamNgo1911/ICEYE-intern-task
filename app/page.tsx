@@ -7,32 +7,55 @@ export default function Home() {
   const handovers = getHandovers();
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container max-w-3xl mx-auto py-8 px-4">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold">On-Call Handovers</h1>
+    <div className="container max-w-4xl mx-auto py-10 px-4">
+      {/* Page header */}
+      <div className="flex items-end justify-between mb-10">
+        <div>
+          <p className="text-xs font-mono text-primary tracking-widest uppercase mb-1">
+            Mission Control
+          </p>
+          <h1 className="text-3xl font-bold tracking-tight">
+            On-Call Handovers
+          </h1>
+          <p className="text-muted-foreground mt-1 text-sm">
+            {handovers.length === 0
+              ? "No handovers logged yet."
+              : `${handovers.length} handover${handovers.length === 1 ? "" : "s"} on record`}
+          </p>
+        </div>
+        <Link href="/handovers/new">
+          <Button className="gap-2 font-mono">
+            + New Handover
+          </Button>
+        </Link>
+      </div>
+
+      {/* Divider */}
+      <div className="h-px bg-gradient-to-r from-primary/40 via-border to-transparent mb-8" />
+
+      {/* List */}
+      {handovers.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-24 text-center">
+          <div className="w-16 h-16 rounded-full border border-primary/30 bg-primary/5 flex items-center justify-center mb-4">
+            <div className="w-6 h-6 rounded-full border border-primary/60 bg-primary/20" />
+          </div>
+          <p className="text-muted-foreground mb-1">No handovers logged yet.</p>
+          <p className="text-xs text-muted-foreground/60 mb-6">
+            Start by logging the first shift handover.
+          </p>
           <Link href="/handovers/new">
-            <Button>New Handover</Button>
+            <Button variant="outline" className="font-mono text-sm">
+              Log first handover
+            </Button>
           </Link>
         </div>
-
-        {handovers.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground mb-4">
-              No handover notes yet.
-            </p>
-            <Link href="/handovers/new">
-              <Button variant="outline">Create your first handover</Button>
-            </Link>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {handovers.map((handover) => (
-              <HandoverCard key={handover.id} handover={handover} />
-            ))}
-          </div>
-        )}
-      </div>
+      ) : (
+        <div className="space-y-3">
+          {handovers.map((handover) => (
+            <HandoverCard key={handover.id} handover={handover} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
