@@ -35,9 +35,9 @@ export default async function HandoverDetailPage({ params }: PageProps) {
     <div className="container max-w-4xl mx-auto py-10 px-4">
       <div className="mb-8">
         <Link href="/">
-          <Button variant="ghost" size="sm" className="font-mono text-muted-foreground hover:text-foreground -ml-2 gap-1.5">
+          <Button variant="ghost" className="font-mono text-muted-foreground hover:text-foreground -ml-3 gap-2">
             <ArrowLeft className="w-4 h-4" />
-            Back
+            Back to Handovers
           </Button>
         </Link>
       </div>
@@ -81,7 +81,7 @@ export default async function HandoverDetailPage({ params }: PageProps) {
             </p>
           </div>
           <div className="bg-card/80 border border-border/60 rounded-lg p-5 glow-border">
-            <p className="text-foreground/90 whitespace-pre-wrap leading-relaxed text-sm">
+            <p className="text-foreground/90 whitespace-pre-wrap leading-relaxed">
               {handover.summary}
             </p>
           </div>
@@ -95,7 +95,7 @@ export default async function HandoverDetailPage({ params }: PageProps) {
             </p>
           </div>
           <div className="bg-card/80 border border-border/60 rounded-lg p-5 glow-border">
-            <p className="text-foreground/90 whitespace-pre-wrap leading-relaxed text-sm">
+            <p className="text-foreground/90 whitespace-pre-wrap leading-relaxed">
               {handover.notesForNext}
             </p>
           </div>

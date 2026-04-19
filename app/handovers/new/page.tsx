@@ -8,9 +8,9 @@ export default function NewHandoverPage() {
     <div className="container max-w-4xl mx-auto py-10 px-4">
       <div className="mb-8">
         <Link href="/">
-          <Button variant="ghost" size="sm" className="font-mono text-muted-foreground hover:text-foreground -ml-2 gap-1.5">
+          <Button variant="ghost" className="font-mono text-muted-foreground hover:text-foreground -ml-3 gap-2">
             <ArrowLeft className="w-4 h-4" />
-            Back
+            Back to Handovers
           </Button>
         </Link>
       </div>
