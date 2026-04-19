@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { HandoverCard } from "@/components/handovers/handover-card";
 import { getHandovers } from "@/lib/db";
+import { Plus, FileText, Inbox } from "lucide-react";
 
 export default function Home() {
   const handovers = getHandovers();
@@ -11,9 +12,12 @@ export default function Home() {
       {/* Page header */}
       <div className="flex items-end justify-between mb-10">
         <div>
-          <p className="text-xs font-mono text-primary tracking-widest uppercase mb-1">
-            Mission Control
-          </p>
+          <div className="flex items-center gap-2 mb-1">
+            <FileText className="w-3.5 h-3.5 text-primary" />
+            <p className="text-xs font-mono text-primary tracking-widest uppercase">
+              Mission Control
+            </p>
+          </div>
           <h1 className="text-3xl font-bold tracking-tight">
             On-Call Handovers
           </h1>
@@ -25,7 +29,8 @@ export default function Home() {
         </div>
         <Link href="/handovers/new">
           <Button className="gap-2 font-mono">
-            + New Handover
+            <Plus className="w-4 h-4" />
+            New Handover
           </Button>
         </Link>
       </div>
@@ -37,14 +42,15 @@ export default function Home() {
       {handovers.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-24 text-center">
           <div className="w-16 h-16 rounded-full border border-primary/30 bg-primary/5 flex items-center justify-center mb-4">
-            <div className="w-6 h-6 rounded-full border border-primary/60 bg-primary/20" />
+            <Inbox className="w-7 h-7 text-primary/60" />
           </div>
           <p className="text-muted-foreground mb-1">No handovers logged yet.</p>
           <p className="text-xs text-muted-foreground/60 mb-6">
             Start by logging the first shift handover.
           </p>
           <Link href="/handovers/new">
-            <Button variant="outline" className="font-mono text-sm">
+            <Button variant="outline" className="font-mono text-sm gap-2">
+              <Plus className="w-4 h-4" />
               Log first handover
             </Button>
           </Link>

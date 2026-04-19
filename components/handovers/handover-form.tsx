@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { submitHandover, type FormState } from "@/app/handovers/actions";
+import { PenLine, User, CalendarDays, FileText, MessageSquare, Send, Loader2 } from "lucide-react";
 
 const initialState: FormState = {};
 
@@ -18,9 +19,12 @@ export function HandoverForm() {
   return (
     <div className="w-full max-w-2xl">
       <div className="mb-6">
-        <p className="text-xs font-mono text-primary tracking-widest uppercase mb-1">
-          New Entry
-        </p>
+        <div className="flex items-center gap-2 mb-1">
+          <PenLine className="w-3.5 h-3.5 text-primary" />
+          <p className="text-xs font-mono text-primary tracking-widest uppercase">
+            New Entry
+          </p>
+        </div>
         <h2 className="text-2xl font-bold tracking-tight">Handover Note</h2>
         <p className="text-sm text-muted-foreground mt-1">
           Log what happened and what the next person needs to know.
@@ -32,7 +36,8 @@ export function HandoverForm() {
       <form action={formAction} className="space-y-5">
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <Label htmlFor="onCallPerson" className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+            <Label htmlFor="onCallPerson" className="text-xs font-mono text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
+              <User className="w-3 h-3" />
               On-Call Person
             </Label>
             <Input
@@ -48,7 +53,8 @@ export function HandoverForm() {
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="shiftDate" className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+            <Label htmlFor="shiftDate" className="text-xs font-mono text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
+              <CalendarDays className="w-3 h-3" />
               Shift Date
             </Label>
             <Input
@@ -65,7 +71,8 @@ export function HandoverForm() {
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="summary" className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+          <Label htmlFor="summary" className="text-xs font-mono text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
+            <FileText className="w-3 h-3" />
             Shift Summary
           </Label>
           <Textarea
@@ -82,7 +89,8 @@ export function HandoverForm() {
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="notesForNext" className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+          <Label htmlFor="notesForNext" className="text-xs font-mono text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
+            <MessageSquare className="w-3 h-3" />
             Notes for Next Person
           </Label>
           <Textarea
@@ -102,9 +110,19 @@ export function HandoverForm() {
           <Button
             type="submit"
             disabled={pending}
-            className="w-full font-mono tracking-wide"
+            className="w-full font-mono tracking-wide gap-2"
           >
-            {pending ? "Transmitting..." : "Submit Handover"}
+            {pending ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Transmitting...
+              </>
+            ) : (
+              <>
+                <Send className="w-4 h-4" />
+                Submit Handover
+              </>
+            )}
           </Button>
         </div>
       </form>
