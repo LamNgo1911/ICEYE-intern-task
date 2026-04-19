@@ -2,7 +2,7 @@
 
 A simple tool for submitting and viewing on-call handover notes. Replaces the Slack thread workflow where information gets lost.
 
-## 🎥 Video demmo
+## 🎥 Video Demo
 
 - https://github.com/user-attachments/assets/89bec24e-a242-4b05-b4a3-a930751bc895
 
