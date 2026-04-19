@@ -2,7 +2,7 @@
 
 ## Overview
 
-A simple, functional tool for submitting and viewing on-call handover notes. Built with a monolithic architecture using Next.js App Router with Server Actions and SQLite for persistence.
+A simple, functional tool for submitting and viewing on-call handover notes. Built with a monolithic architecture using Next.js App Router with Server Actions and SQLite for persistence. Features an ICEYE space-themed dark UI with cyan accents.
 
 ## Tech Stack
 
@@ -10,6 +10,7 @@ A simple, functional tool for submitting and viewing on-call handover notes. Bui
 - **UI Library**: React 19
 - **Styling**: Tailwind CSS v4
 - **Components**: shadcn/ui
+- **Icons**: lucide-react
 - **Database**: SQLite via better-sqlite3 (file-based, no external DB needed)
 
 ## Folder Structure
@@ -17,9 +18,9 @@ A simple, functional tool for submitting and viewing on-call handover notes. Bui
 ```
 iceye-intern-task/
 ├── app/                                  # Next.js App Router pages
-│   ├── layout.tsx                        # Root layout with fonts and metadata
+│   ├── layout.tsx                        # Root layout with header, fonts, metadata
 │   ├── page.tsx                          # Home page - list of handovers
-│   ├── globals.css                       # Global styles and Tailwind config
+│   ├── globals.css                       # Global styles, theme variables, starfield bg
 │   └── handovers/
 │       ├── actions.ts                    # Server Actions for form handling
 │       ├── new/
@@ -28,7 +29,7 @@ iceye-intern-task/
 │           └── page.tsx                  # View single handover detail page
 │
 ├── components/                           # React components
-│   ├── ui/                               # shadcn/ui base components (unmodified)
+│   ├── ui/                               # shadcn/ui base components
 │   │   ├── button.tsx
 │   │   ├── card.tsx
 │   │   ├── input.tsx
@@ -48,6 +49,7 @@ iceye-intern-task/
 ├── public/                               # Static assets
 │
 ├── handovers.db                          # SQLite database file (auto-created, gitignored)
+├── architecture.md                       # This file
 ├── package.json
 ├── tsconfig.json
 ├── next.config.ts
@@ -99,8 +101,23 @@ Colocated with the handovers route segment:
 
 ### Components
 
-- **HandoverForm** (`components/handovers/`) - Client component with form fields. Uses `useActionState` for pending states and validation errors.
-- **HandoverCard** (`components/handovers/`) - Server component displaying handover summary in a clickable card.
+- **HandoverForm** (`components/handovers/`) - Client component with form fields. Uses `useActionState` for pending states and validation errors. Includes icons for each field.
+- **HandoverCard** (`components/handovers/`) - Server component displaying handover summary with user avatar, date, and chevron indicator.
+
+## UI/UX Design
+
+### Theme
+- **Color scheme**: Dark space theme with deep navy background
+- **Primary accent**: Cyan/electric-blue (`oklch(0.72 0.18 210)`)
+- **Background**: Subtle starfield effect using radial gradients
+- **Cards**: Semi-transparent with glow border effect
+
+### Icons (lucide-react)
+- Header: `Satellite`, `Radio`
+- Navigation: `ArrowLeft`, `Plus`
+- Cards: `User`, `Calendar`, `ChevronRight`
+- Form: `PenLine`, `User`, `CalendarDays`, `FileText`, `MessageSquare`, `Send`, `Loader2`
+- Detail: `ClipboardList`, `Clock`
 
 ## Data Flow
 
